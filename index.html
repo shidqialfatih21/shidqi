@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Puskesmas Sumberjaya</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <!-- Header with Photos -->
+  <div class="header-with-photos">
+    <div class="header-side">
+      <img src="ayah.jpg" alt="Ayah" />
+      <img src="kapus.jpg" alt="Kapus" />
+    </div>
+    <div class="header-center">
+      <div class="header-center-logos">
+        <img src="kabupaten.jpg" alt="Kabupaten" />
+        <img src="kesehatan.jpg" alt="Kesehatan" />
+      </div>
+      <div class="header-title">
+        <h1>Puskesmas Sumberjaya</h1>
+        <p>Website Informasi & Layanan</p>
+      </div>
+    </div>
+    <div class="header-side">
+      <img src="bupati.jpg" alt="Bupati" />
+      <img src="wakil.jpg" alt="Wakil" />
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <div class="flex justify-center space-x-8 font-semibold text-white bg-blue-700 py-3 shadow-md">
+  <a href="https://puskesmas-digital-compass.lovable.app" target="_blank" class="px-4 py-2 bg-pink-500 rounded-md hover:bg-pink-600 transition duration-300">Profil</a>
+  <a href="https://blueprint-web-studio.lovable.app" target="_blank" class="px-4 py-2 hover:bg-blue-800 rounded-md transition duration-300">Struktur</a>
+  <a href="https://cita-koding-seni.lovable.app/" target="_blank" class="px-4 py-2 hover:bg-blue-800 rounded-md transition duration-300">Astacita</a>
+  <a href="#haki" class="px-4 py-2 hover:bg-blue-800 rounded-md transition duration-300">HAKI</a>
+</div>
+
+
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <input type="text" id="search" placeholder="Cari aplikasi..." />
+  </div>
+
+  <!-- Dynamic Content -->
+  <div id="content"></div>
+
+  <script>
+    const data = {
+      "Kesehatan Ibu dan Anak (KIA)": [
+        { name: "MPDN", url: "https://mpdn.kemkes.go.id/masuk", icon: "🤱" },
+        { name: "e-Kohort Bumil", url: "#", icon: "📒" },
+        { name: "SIMATNEO", url: "#", icon: "👶" },
+        { name: "PWS KIA", url: "#", icon: "📊" },
+        { name: "MTBS / MTBM", url: "#", icon: "🩺" },
+        { name: "ASIK Website (Kesmas)", url: "https://asik.kemkes.go.id/", icon: "🌐" },
+        { name: "E-kohort Kespro", url: "#", icon: "👩‍⚕" }
+      ],
+      "Imunisasi": [
+        { name: "KIPI Online", url: "#", icon: "💉" },
+        { name: "PWS Imunisasi", url: "#", icon: "📈" },
+        { name: "SMILE", url: "#", icon: "😄" },
+        { name: "ASIK Website (Imunisasi)", url: "https://asik.kemkes.go.id/", icon: "🖥" },
+        { name: "Asik Mobile", url: "https://play.google.com/store/apps/details?id=com.kemkes.asikmobile", icon: "📱" }
+      ],
+      "Gizi": [
+        { name: "SIGIZI Terpadu", url: "#", icon: "🥗" },
+        { name: "Gsheet Kohort GIBUR", url: "#", icon: "📘" },
+        { name: "Gsheet Status Gizi", url: "#", icon: "📊" },
+        { name: "Gsheet Vit A", url: "#", icon: "🧃" },
+        { name: "Gsheet Stunting", url: "#", icon: "📉" },
+        { name: "Gsheet TTD Rematri", url: "#", icon: "💊" }
+      ],
+      "Survailens": [
+        { name: "E-SISMAL", url: "#", icon: "📡" },
+        { name: "PD3I", url: "#", icon: "🦠" },
+        { name: "SKDR", url: "https://skdr.surveilans.org/", icon: "📍" },
+        { name: "E-Filca", url: "#", icon: "🧬" }
+      ],
+      "Penyakit": [
+        { name: "SIHEPI", url: "https://sihepi.kemkes.go.id/login", icon: "🤒" },
+        { name: "SITB", url: "#", icon: "🧫" },
+        { name: "SILANTOR", url: "https://silantor.kemkes.go.id/", icon: "🦟" },
+        { name: "SIHA", url: "#", icon: "🧪" }
+      ],
+      "Indra": [
+        { name: "Si Gangguan Indera", url: "#", icon: "👁" }
+      ],
+      "Kesling": [
+        { name: "SITBM", url: "#", icon: "🚰" },
+        { name: "SIKELIM", url: "#", icon: "🏞" },
+        { name: "SITKO", url: "#", icon: "🏚" }
+      ],
+      "Administrasi & Manajemen": [
+        { name: "SISDMK", url: "https://sdmk.kemkes.go.id/", icon: "📊" },
+        { name: "SIMPEG", url: "#", icon: "👨‍💼" }
+      ],
+      "Farmasi": [
+        { name: "Ketersediaan Obat & Vaksin", url: "#", icon: "💊" },
+        { name: "Sitasia", url: "https://farmalkes.kemkes.go.id/", icon: "📋" },
+        { name: "SIMONA", url: "#", icon: "📦" },
+        { name: "SIGA", url: "#", icon: "📈" }
+      ],
+      "Mutu": [
+        { name: "DFO", url: "#", icon: "🗂" },
+        { name: "ASPAK", url: "#", icon: "🧰" },
+        { name: "INM", url: "#", icon: "📉" }
+      ],
+      "UKP": [
+        { name: "ASIK Website (CKG)", url: "https://asik.kemkes.go.id/", icon: "🧑‍⚕" }
+      ]
+    };
+
+    function createCard(app) {
+      const disabled = app.url === "#";
+      return `<div class="card" ${disabled ? 'style="cursor:not-allowed;opacity:.6"' : `onclick="window.open('${app.url}','_blank')"`}>
+        <div class="icon">${app.icon}</div>
+        <div>${app.name}${disabled ? ' (belum tersedia)' : ''}</div>
+      </div>`;
+    }
+
+    function renderApps(filter = "") {
+      const container = document.getElementById("content");
+      container.innerHTML = "";
+      for (const category in data) {
+        const apps = data[category].filter(app =>
+          app.name.toLowerCase().includes(filter.toLowerCase())
+        );
+        if (apps.length > 0) {
+          const section = document.createElement("div");
+          section.className = "category";
+          section.innerHTML = `<h2>${category}</h2><div class="grid">${apps.map(createCard).join("")}</div>`;
+          container.appendChild(section);
+        }
+      }
+    }
+
+    document.getElementById("search").addEventListener("input", e =>
+      renderApps(e.target.value)
+    );
+
+    renderApps();
+  </script>
+</body>
+</html>
